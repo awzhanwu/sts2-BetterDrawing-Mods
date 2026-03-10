@@ -32,6 +32,11 @@ The mod adds more user-defined functions to the map drawing system of the origin
   - **It is not recommended** to use the eraser while this mod is installed.
   - If you still need to use it, please **use the sampler** from the palette to select **the color you want to erase** before using the eraser.
 
+## ⚠️ Copyright Notice
+
+This mod uses textures from the official game "Slay the Spire". These assets **remain the property of the original game developer**.  
+The MIT license of this mod **only applies to the code and resources created by the mod author**.
+
 ## ⚙️ Build
 
 If you want to build the project yourself:
