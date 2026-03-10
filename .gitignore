@@ -1,0 +1,26 @@
+# Godot
+.godot/
+.import/
+*.import
+*.uid
+
+# Export
+/android/
+export.cfg
+export_credentials.cfg
+
+# Temp
+*.tmp
+
+# Mono
+.mono/
+data_*/
+mono_crash.*.json
+
+# .NET build
+bin/
+obj/
+
+# IDE
+.vs/
+.vscode/
