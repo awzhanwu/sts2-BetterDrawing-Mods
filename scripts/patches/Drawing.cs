@@ -26,8 +26,11 @@ class Patch_NetService
         INetGameService _netService = Traverse.Create(__instance)
             .Field("_netService")
             .GetValue<INetGameService>();
-        
+        Material _eraserMaterial = Traverse.Create(__instance)
+            .Field("_eraserMaterial")
+            .GetValue<Material>();
         DrawingDataAccess._netService = _netService;
+        DrawingDataAccess._eraserMaterial = _eraserMaterial;
 
         BetterDrawingSystem sys = new();
         sys.Initialize(__instance);

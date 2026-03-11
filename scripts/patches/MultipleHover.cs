@@ -23,6 +23,7 @@ class Patch_MutipleHover
         foreach (var state in DrawingDataAccess.GetStates())
             if (DrawingDataAccess.GetPlayerId(state) != playerID)
                 foreach (Line2D line in DrawingDataAccess.GetViewport(state).GetChildren().Cast<Line2D>())
-                    line.SelfModulate = new Color(1f, 1f, 1f, newValue ? 0.3f : 1f);
+                    if (line.Material != DrawingDataAccess._eraserMaterial)
+                        line.SelfModulate = new Color(1f, 1f, 1f, newValue ? 0.3f : 1f);
     }
 }

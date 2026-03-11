@@ -2,7 +2,7 @@
 
 # Better Drawing
 
-[**简体中文**](README_ZH.md)
+[**简体中文**](README_ZH.md) | [**Changelog**](ChangeLog.md)
 
 ![Version](https://img.shields.io/badge/Version-0.1.0-blue.svg)
 ![Game](https://img.shields.io/badge/Slay_The_Spire_2-Mod-red.svg)

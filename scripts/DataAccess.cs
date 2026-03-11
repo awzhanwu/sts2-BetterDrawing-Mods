@@ -12,6 +12,7 @@ public static class DrawingDataAccess
     public static Dictionary<ulong, float> _playerWidths = new();
     public static INetGameService _netService;
     public static NMapDrawings _mapDrawings;
+    public static Material _eraserMaterial;
 
     public static IList GetStates()
     {
