@@ -14,6 +14,10 @@
 
 The mod adds more user-defined functions to the map drawing system of the original game, and provides additional undo and highlight player drawings functions.
 
+<div align="center">
+  <img src="images/header.png" width="25%" alt="header">
+</div>
+
 ## ✨ Core Features
 
 - Adds new buttons to the official map drawing toolbar, allowing players to customize **color** and **line width**.
