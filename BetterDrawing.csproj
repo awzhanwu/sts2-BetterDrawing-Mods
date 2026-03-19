@@ -10,7 +10,7 @@
     <Sts2DataDir>$(Sts2Dir)\data_sts2_windows_x86_64</Sts2DataDir>
   </PropertyGroup>
 
-    <ItemGroup>
+  <ItemGroup>
     <Reference Include="sts2">
       <HintPath>$(Sts2DataDir)\sts2.dll</HintPath>
       <Private>false</Private>
@@ -18,11 +18,6 @@
 
     <Reference Include="0Harmony">
       <HintPath>libs\0Harmony.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-
-    <Reference Include="Steamworks.NET">
-      <HintPath>libs\Steamworks.NET.dll</HintPath>
       <Private>false</Private>
     </Reference>
   </ItemGroup>
