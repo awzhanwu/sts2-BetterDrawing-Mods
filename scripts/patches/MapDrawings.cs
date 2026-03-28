@@ -9,7 +9,7 @@ using BetterDrawing.scripts.ui;
 namespace BetterDrawing.scripts.patches;
 
 [HarmonyPatch(typeof(NMapDrawings), "CreateLineForPlayer")]
-class Patch_DrawingColor
+class Patch_CreateLineForPlayer
 {
     static void Postfix(Player player, bool isErasing, Line2D __result)
     {
@@ -19,7 +19,7 @@ class Patch_DrawingColor
 }
 
 [HarmonyPatch(typeof(NMapDrawings), "Initialize")]
-class Patch_NetService
+class Patch_Initialize
 {
     static void Postfix(IPlayerCollection playerCollection, NMapDrawings __instance)
     {
@@ -32,13 +32,16 @@ class Patch_NetService
         DrawingDataAccess._netService = _netService;
         DrawingDataAccess._eraserMaterial = _eraserMaterial;
 
-        BetterDrawingSystem sys = new();
-        sys.Initialize(__instance);
-        __instance.AddChild(sys);
-
         Color characterColor = playerCollection.GetPlayer(_netService.NetId).Character.MapDrawingColor;
         NinePatchRect drawingTools = __instance.GetNode<NinePatchRect>("%DrawingTools");
-        drawingTools.GetChild<HBoxContainer>(0).GetNode<ColorButton>("ColorButton").Initialize(characterColor);
+        drawingTools.GetChild<HBoxContainer>(0).GetNode<ColorButton>("ColorButton").GetNode<ColorPicker>("ColorPicker").Color = characterColor;
+        DrawingDataAccess._widthMarker.DefaultColor = characterColor;
+
+        __instance.GetParent<Control>().GetParent<NMapScreen>().AddChild(new BetterDrawingSystem(
+            drawingTools.GetChild<HBoxContainer>(0).GetNode<WidthButton>("WidthButton"),
+            drawingTools.GetChild<HBoxContainer>(0).GetNode<UndoButton>("UndoButton")
+        ));
+        
         _netService.SendMessage(new BetterDrawingMessage()
         {
             type = BetterDrawingEventType.SetColor,
@@ -51,5 +54,18 @@ class Patch_NetService
         });
 
         DrawingDataAccess._mapDrawings = __instance;
+    }
+}
+
+[HarmonyPatch(typeof(NMapDrawings), "UpdateLocalCursor")]
+class Patch_UpdateLocalCursor
+{
+    static void Prefix()
+    {
+        DrawingDataAccess._widthMarker.UpdateDrawingMode(
+            Traverse.Create(DrawingDataAccess.GetLocalState())
+                .Field("drawingMode")
+                .GetValue<DrawingMode>()
+        );
     }
 }

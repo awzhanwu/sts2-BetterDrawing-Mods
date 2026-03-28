@@ -4,7 +4,7 @@
 
 [**English**](README.md) | [**Changelog**](ChangeLog.md)
 
-![Version](https://img.shields.io/badge/Version-0.1.0-blue.svg)
+![Version](https://img.shields.io/badge/Version-0.2.0-blue.svg)
 ![Game](https://img.shields.io/badge/Slay_The_Spire_2-Mod-red.svg)
 ![Platform](https://img.shields.io/badge/Platform-Windows%20|%20Godot-lightgrey.svg)
 
@@ -12,17 +12,24 @@
 
 </div>
 
-模组在原版游戏的地图绘画功能基础上增添了更多用户自定义功能，且提供了额外的撤销与高亮玩家标记功能。
+模组在原版游戏的地图绘画功能基础上增添了更多用户自定义功能，且提供了额外的撤销与高亮 / 隐藏玩家标记功能。
 
 <div align="center">
-  <img src="images/header.png" width="25%" alt="header">
+  <img src="images/ysjqx.png" width="20%" alt="ysjqx">
+</div>
+<div align="center">
+  <img src="images/header.png" width="50%" alt="header">
 </div>
 
 ## ✨ 核心功能
 
 - 在官方地图绘画工具栏中新增按钮，允许玩家自定义画笔的 **颜色** 与 **线宽** 。
-- 在地图绘画页面中，按下 **Ctrl+Z** 可以撤销上一步绘画或橡皮擦。
-- 多人模式下，鼠标悬停在某位玩家的状态栏时可以 **高亮** 该玩家的地图绘画。
+  - 可通过 **Ctrl + 鼠标滚轮** 快速调整线条宽度。
+- 在使用绘图工具、橡皮或按住 **Ctrl** 时，会显示画笔预览（用于线宽调整）。
+- 在地图绘画页面中，使用撤销按钮或按下 **Ctrl+Z** 可以撤销上一步绘画或橡皮擦操作。
+- 多人模式下：
+  - 鼠标悬停在某位玩家的状态栏时可以 **高亮** 该玩家的地图绘画。
+  - 在玩家状态栏中提供隐藏按钮，可隐藏该玩家的地图绘画。
 
 ## 🎮 玩家安装
 

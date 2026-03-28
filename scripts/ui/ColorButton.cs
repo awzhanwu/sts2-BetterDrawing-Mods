@@ -1,7 +1,6 @@
 using Godot;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
-using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.HoverTips;
 
@@ -25,28 +24,70 @@ partial class ColorButton : NButton
 
 	private static readonly Color _activeColor = new Color(1f, 1f, 1f);
 
-	private static readonly Color _inactiveColor = new Color(0.3f, 0.3f, 0.3f);
+	private static readonly Color _inactiveColor = new Color(0.4f, 0.4f, 0.4f);
+
+	public ColorButton() : base()
+	{
+		Name = "ColorButton";
+		CustomMinimumSize = new Vector2(60, 60);
+		FocusNeighborLeft = "../WidthButton";
+		FocusMode = FocusModeEnum.All;
+
+		_icon = new TextureRect(){
+            Name = "Icon",
+            Texture = GD.Load<Texture2D>("res://assets/BetterDrawing/Prism.png"),
+            ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
+            Size = new Vector2(50f, 50f),
+            Position = new Vector2(3f, 3f),
+            SelfModulate = new Color(0.3f, 0.3f, 0.3f),
+			MouseFilter = MouseFilterEnum.Ignore
+        };
+		_background = new ColorRect(){
+            Name = "Background",
+            Visible = false,
+            Color = new Color(0f, 0f, 0f, 0.8f),
+
+            AnchorBottom = 1f,
+            AnchorTop = 1f,
+            OffsetBottom = -60f,
+            OffsetTop = -492f,
+            OffsetRight = 298f,
+			MouseFilter = MouseFilterEnum.Ignore
+        };
+		_colorPicker = new ColorPicker(){
+            Name = "ColorPicker",
+            Visible = false,
+
+            EditAlpha = false,
+            EditIntensity = false,
+            DeferredMode = true,
+            CanAddSwatches = false,
+            ColorModesVisible = false,
+            PresetsVisible = false,
+
+            AnchorBottom = 1f,
+            AnchorTop = 1f,
+            OffsetBottom = -60f,
+            OffsetTop = -492f,
+            OffsetRight = 298f,
+        };
+		_colorPicker.Connect("color_changed", new Callable(this, nameof(OnColorChanged)));
+
+		AddChild(_icon);
+        AddChild(_background);
+        AddChild(_colorPicker);
+	}
 
 	public override void _Ready()
 	{
 		ConnectSignals();
 		_drawingToolHolder = (Control)GetParent();
-		_icon = GetNode<TextureRect>("Icon");
-		_background = GetNode<ColorRect>("Background");
-		_colorPicker = GetNode<ColorPicker>("ColorPicker");
-		_colorPicker.Connect("color_changed", new Callable(this, nameof(OnColorChanged)));
-
-		NControllerManager.Instance.Connect(NControllerManager.SignalName.ControllerDetected, Callable.From(OnControllerUpdated));
-		NControllerManager.Instance.Connect(NControllerManager.SignalName.MouseDetected, Callable.From(OnControllerUpdated));
-		OnControllerUpdated();
+		_hoverTip = new HoverTip(new LocString("better_drawing", "COLOR_BUTTON.title"), new LocString("better_drawing", "COLOR_BUTTON.description"));
 	}
 
-	public void Initialize(Color color)
+	private void OnColorChanged(Color newColor)
 	{
-		_colorPicker.Color = color;
-	}
-
-	private void OnColorChanged(Color newColor){
+		DrawingDataAccess._widthMarker.DefaultColor = newColor;
 		DrawingDataAccess._playerColors[DrawingDataAccess._netService.NetId] = newColor;
 		DrawingDataAccess._netService.SendMessage(new BetterDrawingMessage()
 		{
@@ -55,9 +96,9 @@ partial class ColorButton : NButton
 		});
 	}
 
-	protected override void OnPress()
+	protected override void OnRelease()
 	{
-		base.OnPress();
+		base.OnRelease();
 		OpenOrClose(!_isOpen);
 	}
 	
@@ -96,12 +137,5 @@ partial class ColorButton : NButton
 		_tween.TweenProperty(_icon, "scale", Vector2.One * 1.1f, 0.05);
 		_tween.TweenProperty(_icon, "self_modulate", _isOpen ? _activeColor : _inactiveColor, 0.05);
 		NHoverTipSet.Remove(_drawingToolHolder);
-	}
-
-	private void OnControllerUpdated()
-	{
-		LocString description = new("better_drawing", "COLOR_BUTTON.description");
-		LocString title = new("better_drawing", "COLOR_BUTTON.title_mkb");
-		_hoverTip = new HoverTip(title, description);
 	}
 }

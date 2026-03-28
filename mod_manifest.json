@@ -3,7 +3,7 @@
   "name": "BetterDrawing",
   "author": "zhan__wu",
   "description": "A better drawing mod",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "has_pck": true,
   "has_dll": true,
   "dependencies": [],

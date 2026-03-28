@@ -12,7 +12,6 @@ public enum BetterDrawingEventType
     Undo,
 }
 
-
 public class BetterDrawingMessage : INetMessage, IPacketSerializable
 {
 	public bool ShouldBroadcast => true;

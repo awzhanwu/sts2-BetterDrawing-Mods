@@ -1,6 +1,10 @@
 {
-    "COLOR_BUTTON.title_mkb": "色盘",
-    "COLOR_BUTTON.description": "修改你画线的颜色。",
-    "WIDTH_BUTTON.title_mkb": "线宽",
-    "WIDTH_BUTTON.description": "修改你画线的宽度。"
+    "UNDO_BUTTON.title": "撤销",
+    "UNDO_BUTTON.title_mkb": "撤销（Ctrl+Z）",
+    "UNDO_BUTTON.description": "撤销上一步画线或擦除。",
+    "WIDTH_BUTTON.title": "线宽",
+    "WIDTH_BUTTON.title_mkb": "线宽（Ctrl+鼠标滚轮）",
+    "WIDTH_BUTTON.description": "修改你画线的宽度。",
+    "COLOR_BUTTON.title": "色盘",
+    "COLOR_BUTTON.description": "修改你画线的颜色。"
 }

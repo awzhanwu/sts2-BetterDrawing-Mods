@@ -1,6 +1,7 @@
 using HarmonyLib;
 using Godot;
 using MegaCrit.Sts2.Core.Nodes.Multiplayer;
+using BetterDrawing.scripts.ui;
 
 namespace BetterDrawing.scripts.patches;
 
@@ -21,9 +22,21 @@ class Patch_MutipleHover
 
         ulong playerID = __instance.Player.NetId;
         foreach (var state in DrawingDataAccess.GetStates())
-            if (DrawingDataAccess.GetPlayerId(state) != playerID)
-                foreach (Line2D line in DrawingDataAccess.GetViewport(state).GetChildren().Cast<Line2D>())
+            if (DrawingDataAccess.GetPlayerIdByState(state) != playerID)
+                foreach (Line2D line in DrawingDataAccess.GetViewportByState(state).GetChildren().Cast<Line2D>())
                     if (line.Material != DrawingDataAccess._eraserMaterial)
                         line.SelfModulate = new Color(1f, 1f, 1f, newValue ? 0.3f : 1f);
+    }
+}
+
+[HarmonyPatch(typeof(NMultiplayerPlayerState), "_Ready")]
+class Patch_AddEyeButton
+{
+
+    static void Postfix(NMultiplayerPlayerState __instance)
+    {
+        EyeButton eyeButton = new(__instance.Player.NetId);
+        DrawingDataAccess._eyeButtons.Add(eyeButton);
+        __instance.AddChild(eyeButton);
     }
 }

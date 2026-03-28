@@ -4,7 +4,7 @@
 
 [**简体中文**](README_ZH.md) | [**Changelog**](ChangeLog.md)
 
-![Version](https://img.shields.io/badge/Version-0.1.0-blue.svg)
+![Version](https://img.shields.io/badge/Version-0.2.0-blue.svg)
 ![Game](https://img.shields.io/badge/Slay_The_Spire_2-Mod-red.svg)
 ![Platform](https://img.shields.io/badge/Platform-Windows%20|%20Godot-lightgrey.svg)
 
@@ -12,17 +12,24 @@
 
 </div>
 
-The mod adds more user-defined functions to the map drawing system of the original game, and provides additional undo and highlight player drawings functions.
+The mod adds more user-defined functions to the map drawing system of the original game, and provides additional undo and highlight / hide player drawings functions.
 
 <div align="center">
-  <img src="images/header.png" width="25%" alt="header">
+  <img src="images/ysjqx.png" width="20%" alt="ysjqx">
+</div>
+<div align="center">
+  <img src="images/header.png" width="50%" alt="header">
 </div>
 
 ## ✨ Core Features
 
 - Adds new buttons to the official map drawing toolbar, allowing players to customize **color** and **line width**.
-- On the map screen, press **Ctrl+Z** to undo the previous drawing or erasing action.
-- In multiplayer mode, hovering the mouse over a player's status bar will **highlight** that player's map drawings.
+  - Line width can be quickly adjusted using **Ctrl + Mouse Wheel**.
+- Displays a pen preview when using the drawing tool, eraser, or holding **Ctrl** (for width adjustment).
+- On the map screen, use the undo button or press **Ctrl+Z** to undo the previous drawing or erasing action.
+- In multiplayer mode:
+  - Hovering over a player's status bar will **highlight** that player's map drawings.
+  - A button in the player's status bar allows hiding that player's map drawings.
 
 ## 🎮 Installation
 
